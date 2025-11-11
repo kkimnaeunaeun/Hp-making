@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>숨 쉬는 도시, 살아있는 벽</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      background: #f4fdf4;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 25px;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 25px 30px;
+      max-width: 600px;
+      line-height: 1.6;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 메인화면 */
+    .main {
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .main h1 {
+      font-size: 3em;
+    }
+
+    /* 열섬현상 섹션 */
+    .heat {
+      background: linear-gradient(to bottom, #e9f7ef, #d4efdf);
+    }
+
+    /* 테스트 섹션 */
+    .test {
+      background: linear-gradient(to bottom, #d4efdf, #d6eaf8);
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #aaa;
+      margin-top: 15px;
+    }
+
+    /* 이끼 장점 섹션 */
+    .moss {
+      background: linear-gradient(to bottom, #d6eaf8, #ebf5fb);
+    }
+
+    /* 지도 섹션 */
+    .map {
+      background: linear-gradient(to bottom, #ebf5fb, #e8f8f5);
+    }
+
+    iframe {
+      width: 80%;
+      height: 60%;
+      border-radius: 20px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 인터랙티브 섹션 */
+    .interactive {
+      background: linear-gradient(to top, #a9dfbf, #aed6f1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .building {
+      width: 200px;
+      height: 300px;
+      background: linear-gradient(to top, #ccc, #999);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 1s;
+    }
+
+    .moss-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 300px;
+      background: radial-gradient(circle at bottom, rgba(0,128,0,0.4), transparent 70%);
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 2s ease;
+      pointer-events: none;
+    }
+
+    footer {
+      background: #145a32;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <!-- 메인 -->
+  <section class="main">
+    <h1>숨 쉬는 도시, 살아있는 벽</h1>
+    <p class="box">식물 생리학과 환경공학의 융합을 통해 이끼 기반 친환경 외벽 시스템을 도입합니다.<br>
+    이끼는 미세먼지를 흡수하고 표면 온도를 낮추며, 유지비도 적습니다.</p>
+  </section>
+
+  <!-- 열섬현상 -->
+  <section class="heat">
+    <h2>열섬현상의 심각성</h2>
+    <div class="box">
+      도시는 콘크리트와 아스팔트로 덮여 열을 흡수합니다.<br>
+      이로 인해 주변 온도가 상승하고, 인체의 열 스트레스와 질병 위험도 높아집니다.
+    </div>
+  </section>
+
+  <!-- 인식 테스트 -->
+  <section class="test">
+    <h2>당신의 인식을 확인해보세요!</h2>
+    <div class="box">
+      <p>열섬현상이 당신의 건강이나 생활에 어떤 영향을 미친다고 생각하나요?</p>
+      <input type="text" placeholder="자유롭게 작성해보세요.">
+    </div>
+  </section>
+
+  <!-- 이끼 장점 -->
+  <section class="moss">
+    <h2>이끼의 생태적 장점</h2>
+    <div class="box">
+      이끼는 탄소를 흡수하고 미세먼지를 걸러냅니다.<br>
+      또, 건물 표면 온도를 낮춰 도시의 온도 불균형을 완화합니다.
+    </div>
+  </section>
+
+  <!-- 지도 -->
+  <section class="map">
+    <h2>실제 적용 사례 지도</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.150733684439!2d126.97796901559842!3d37.56653597979807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca310c8a8d7c3%3A0x5b6e4da928e3cf1a!2z7ISc7Jq47Yq567OE7IucIOyCrOumrA!5e0!3m2!1sko!2skr!4v1684759242347!5m2!1sko!2skr"></iframe>
+  </section>
+
+  <!-- 인터랙티브 -->
+  <section class="interactive">
+    <h2>건물에 생명을 불어넣어보세요</h2>
+    <div class="building" id="building">
+      <div class="moss-overlay" id="moss"></div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    지적 소유권 © 충렬여자고등학교 1학년 1반
+  </footer>
+
+  <script>
+    const building = document.getElementById('building');
+    const moss = document.getElementById('moss');
+    let mossLevel = 0;
+    let skyOpacity = 0;
+
+    building.addEventListener('click', () => {
+      mossLevel = Math.min(mossLevel + 0.2, 1);
+      moss.style.opacity = mossLevel;
+      document.querySelector('.interactive').style.background = 
+        `linear-gradient(to top, rgba(169,223,191,${1 - mossLevel}), rgba(174,214,241,${1}))`;
+    });
+  </script>
+</body>
+</html>
