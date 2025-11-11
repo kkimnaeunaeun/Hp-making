@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숨 쉬는 도시, 살아있는 벽</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Pretendard', sans-serif;
+    background-color: #f4f8f5;
+    color: #1b3b2f;
+    scroll-behavior: smooth;
+  }
+
+  section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  h2 {
+    color: #054731;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.9);
+    padding: 25px 30px;
+    max-width: 750px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+
+  /* 메인 섹션 */
+  .main {
+    background: linear-gradient(to bottom right, rgba(0,60,40,0.5), rgba(0,100,120,0.4)),
+      url('https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?auto=format&fit=crop&w=1400&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .main h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  /* 열섬현상 섹션 */
+  .heat {
+    background: linear-gradient(to bottom, #d0f0c0, #b3e5fc);
+  }
+
+  /* 이끼 시스템 */
+  .moss {
+    background: linear-gradient(to bottom, #c9f4de, #b3e5fc);
+  }
+
+  /* 상호작용 섹션 */
+  .interactive {
+    background: linear-gradient(to top, #b0d8ff, #87cefa);
+    transition: background 1s ease;
+  }
+
+  .building {
+    width: 250px;
+    height: 350px;
+    background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=700&q=80') center/cover no-repeat;
+    border-radius: 10px;
+    border: 3px solid #cfd8dc;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .moss-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(76,175,80,0);
+    transition: background 1s ease;
+  }
+
+  /* 테스트 섹션 */
+  .test {
+    background: linear-gradient(to bottom, #f1f8e9, #dcedc8);
+  }
+
+  .test input, .test textarea {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+  }
+
+  .test button {
+    background: #81c784;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #a5d6a7;
+    color: #0a3622;
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 768px) {
+    .main h1 { font-size: 2.2rem; }
+    section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 메인 -->
+<section class="main">
+  <h1>숨 쉬는 도시, 살아있는 벽</h1>
+  <p>이끼로 도시의 열을 식히는 친환경 혁신</p>
+</section>
+
+<!-- 열섬현상 -->
+<section class="heat">
+  <h2>도시의 열섬현상, 왜 심각할까?</h2>
+  <div class="card">
+    도시의 콘크리트 구조물은 열을 쉽게 흡수하고 방출하지 못해,  
+    주변보다 기온이 최대 5℃ 이상 높아지는 ‘열섬현상’을 만든다.  
+    이는 냉방 에너지 사용을 증가시키고, 온열 질환과 대기 오염을 심화시킨다.
+  </div>
+</section>
+
+<!-- 이끼 시스템 소개 -->
+<section class="moss">
+  <h2>이끼 기반 친환경 외벽 시스템</h2>
+  <div class="card">
+    식물 생리학과 환경공학의 융합으로, 건물 외벽에 이끼를 활용한 친환경 냉각 시스템을 도입한다.  
+    이끼는 광합성과 증산작용을 통해 주변 온도를 낮추고, 미세먼지를 흡수하여 공기를 정화한다.  
+    유지비가 적으며, 도시 생태계 복원에도 기여할 수 있다.
+  </div>
+</section>
+
+<!-- 상호작용 섹션 -->
+<section class="interactive">
+  <h2>도시를 변화시켜보세요!</h2>
+  <div class="card">
+    건물을 클릭하면 벽면에 이끼가 자라나고, 하늘이 점점 맑아집니다.
+  </div>
+  <div class="building" id="building">
+    <div class="moss-layer" id="mossLayer"></div>
+  </div>
+</section>
+
+<!-- 인식 테스트 -->
+<section class="test">
+  <h2>당신의 인식을 확인해보세요!</h2>
+  <div class="card">
+    열섬현상을 줄이기 위해 우리가 할 수 있는 방법을 적어보세요.
+  </div>
+  <textarea id="answer" rows="5" placeholder="당신의 생각을 적어주세요."></textarea><br>
+  <button onclick="submitAnswer()">제출하기</button>
+  <p id="feedback"></p>
+</section>
+
+<footer>
+  지적 소유권은 충렬여고 1학년 1반에게 있습니다 © 2025
+</footer>
+
+<script>
+  // 이끼 자라남 + 하늘 맑아짐
+  let mossOpacity = 0;
+  let skyLightness = 80;
+
+  document.getElementById('building').addEventListener('click', () => {
+    if (mossOpacity < 0.8) mossOpacity += 0.1;
+    if (skyLightness < 95) skyLightness += 2;
+
+    document.getElementById('mossLayer').style.background = `rgba(76,175,80,${mossOpacity})`;
+    document.querySelector('.interactive').style.background =
+      `linear-gradient(to top, hsl(200,80%,${skyLightness}%), hsl(210,100%,${skyLightness-10}%))`;
+  });
+
+  function submitAnswer() {
+    const ans = document.getElementById('answer').value.trim();
+    const feedback = document.getElementById('feedback');
+    if (ans === "") {
+      feedback.textContent = "생각을 입력해주세요.";
+      feedback.style.color = "red";
+    } else {
+      feedback.textContent = "좋은 생각이에요. 작은 실천이 도시를 바꿉니다.";
+      feedback.style.color = "#2e7d32";
+      document.getElementById('answer').value = "";
+    }
+  }
+</script>
+</body>
+</html>
