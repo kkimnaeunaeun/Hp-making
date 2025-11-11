@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숨 쉬는 도시, 살아있는 벽</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Pretendard", sans-serif;
+    color: #1a1a1a;
+    background-color: #f4f8f5;
+    scroll-behavior: smooth;
+  }
+
+  section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    box-sizing: border-box;
+  }
+
+  /* 메인화면 */
+  .main {
+    background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  }
+  .main h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  /* 열섬현상 섹션 */
+  .heat {
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+    text-align: center;
+  }
+
+  /* 이끼 시스템 소개 */
+  .moss {
+    background: linear-gradient(to bottom, #e6f4ea, #c8e6c9);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* 상호작용 섹션 */
+  .interactive {
+    background: linear-gradient(to top, #b0d8ff, #87cefa);
+    transition: background 1s ease;
+    flex-direction: column;
+  }
+  .building {
+    width: 250px;
+    height: 350px;
+    background: url('https://images.unsplash.com/photo-1581090700227-1e37b190418e') center/cover no-repeat;
+    border: 3px solid #cfd8dc;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .moss-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(76, 175, 80, 0);
+    transition: background 1s ease;
+  }
+
+  /* 테스트 섹션 */
+  .test {
+    background: linear-gradient(to bottom, #f1f8e9, #dcedc8);
+    text-align: center;
+  }
+  .test input, .test textarea {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+  }
+  .test button {
+    background: #81c784;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. 메인 화면 -->
+<section class="main">
+  <h1>숨 쉬는 도시, 살아있는 벽</h1>
+  <p>이끼로 도시의 열을 식히는 친환경 혁신</p>
+</section>
+
+<!-- 2. 열섬 현상의 심각성 -->
+<section class="heat">
+  <h2>도시의 열섬현상, 왜 문제일까?</h2>
+  <p>도시는 콘크리트와 아스팔트로 뒤덮여 열을 쉽게 방출하지 못한다.  
+  이로 인해 여름철 온도가 급격히 상승하고, 열사병과 호흡기 질환 같은 건강 문제가 늘어난다.  
+  열섬현상은 단순한 기온 문제가 아니라 시민의 생명과 직결된 환경 문제이다.</p>
+</section>
+
+<!-- 3. 이끼 기반 외벽 시스템 -->
+<section class="moss">
+  <h2>이끼 기반 친환경 빌딩 외벽 시스템</h2>
+  <p>식물 생리학과 환경공학을 결합하여, 건물 외벽에 이끼를 활용한 친환경 시스템을 도입한다.  
+  이끼는 광합성과 증산작용을 통해 주변 온도를 낮추며, 미세먼지를 흡수해 공기 질을 개선한다.  
+  또한 유지비가 적고, 도시의 녹색 생태 공간을 확장하는 효과가 있다.</p>
+</section>
+
+<!-- 4. 상호작용 섹션 -->
+<section class="interactive">
+  <h2>도시를 변화시켜보세요!</h2>
+  <p>건물을 클릭하면 이끼가 자라나고, 하늘이 점점 맑아집니다.</p>
+  <div class="building" id="building">
+    <div class="moss-layer" id="mossLayer"></div>
+  </div>
+</section>
+
+<!-- 5. 인식 테스트 -->
+<section class="test">
+  <h2>당신의 인식을 확인해보세요!</h2>
+  <p>열섬현상을 완화하기 위해 개인이나 사회가 할 수 있는 방법을 자유롭게 적어보세요.</p>
+  <textarea id="answer" rows="5" placeholder="당신의 생각을 적어주세요."></textarea><br>
+  <button onclick="submitAnswer()">제출하기</button>
+  <p id="feedback"></p>
+</section>
+
+<!-- 6. 저작권 표기 -->
+<footer>
+  본 웹페이지의 지적 소유권은 충렬여고 1학년 1반에게 있습니다.
+</footer>
+
+<script>
+  // 이끼 자라나는 효과 + 하늘 맑아짐
+  let mossOpacity = 0;
+  let skyLightness = 80; // 0~100 밝기
+
+  document.getElementById('building').addEventListener('click', () => {
+    if (mossOpacity < 0.8) mossOpacity += 0.1;
+    if (skyLightness < 95) skyLightness += 2;
+
+    document.getElementById('mossLayer').style.background = `rgba(76, 175, 80, ${mossOpacity})`;
+    document.querySelector('.interactive').style.background = `linear-gradient(to top, hsl(200, 80%, ${skyLightness}%), hsl(210, 100%, ${skyLightness - 10}%))`;
+  });
+
+  // 주관식 테스트
+  function submitAnswer() {
+    const ans = document.getElementById('answer').value.trim();
+    const feedback = document.getElementById('feedback');
+    if (ans === "") {
+      feedback.textContent = "생각을 입력해주세요.";
+      feedback.style.color = "red";
+    } else {
+      feedback.textContent = "좋은 생각이에요! 작은 실천이 도시를 바꿉니다.";
+      feedback.style.color = "green";
+      document.getElementById('answer').value = "";
+    }
+  }
+</script>
+
+</body>
+</html>
